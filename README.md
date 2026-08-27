@@ -95,8 +95,8 @@ live.
 
 Minimalist and industrial: monochrome on paper white, one red, dot matrix for the
 wordmark and section numbers, monospace for anything small, hairlines instead of
-shadows, and a grid you can see. The structure is keyfold.io's: a floating pill of
-navigation, one large headline, a pill to download.
+shadows, and a grid you can see. The structure is a floating pill of navigation,
+one large headline, and a pill to download.
 
 Three typefaces, each with one job. Inter Tight for headlines, JetBrains Mono for
 labels and code, DotGothic16 for the wordmark and the numbers.

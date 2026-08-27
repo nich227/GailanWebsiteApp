@@ -1,8 +1,8 @@
 /*
  * Minimalist and industrial: monochrome with one red, dot matrix for display
  * type, monospace for anything small, hairlines instead of shadows, and a grid
- * you can see. Keyfold's structure on top of it: a floating pill of navigation,
- * one enormous headline, a black pill to download.
+ * you can see. The structure is a floating pill of navigation, one enormous
+ * headline, and a black pill to download.
  */
 
 :root {
