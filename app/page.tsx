@@ -309,7 +309,7 @@ export default function Home() {
           </div>
 
           <div className="hero-actions" style={{ justifyContent: "flex-start" }}>
-            <a className="pill" href={HUB}>
+            <a className="pill" href="/hub">
               Browse widgets
             </a>
             <a className="pill pill-ghost" href={`${HUB}/blob/main/CONTRIBUTING.md`}>
@@ -344,7 +344,7 @@ export default function Home() {
             <a className="label" href={`${REPO}/releases`}>
               Releases
             </a>
-            <a className="label" href={HUB}>
+            <a className="label" href="/hub">
               Widgets
             </a>
             <a className="label" href="https://tracesof.net/uebersicht">

@@ -11,7 +11,7 @@ const LINKS = [
   { href: "#write", label: "Writing widgets" },
   { href: "#glass", label: "Glass" },
   { href: "#specs", label: "Specs" },
-  { href: HUB, label: "Widgets" },
+  { href: "/hub", label: "Widgets" },
 ];
 
 /**
