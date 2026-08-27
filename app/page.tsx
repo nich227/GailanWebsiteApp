@@ -38,7 +38,7 @@ const SPECS: [string, string][] = [
   ["Styling", "Emotion 11, css and styled"],
   ["Automation", "App Intents and AppleScript"],
   ["Updates", "Sparkle, signed with EdDSA"],
-  ["Licence", "GPL-3.0-or-later"],
+  ["License", "GPL-3.0-or-later"],
 ];
 
 function Code() {
@@ -252,7 +252,7 @@ export default function Home() {
               </div>
               <div className="spec-row">
                 <div className="spec-key label label-ink">Tint</div>
-                <div className="spec-value">Any colour, or none</div>
+                <div className="spec-value">Any color, or none</div>
               </div>
               <div className="spec-row">
                 <div className="spec-key label label-ink">Drawn by</div>

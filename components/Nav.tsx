@@ -8,7 +8,7 @@ const HUB = "https://github.com/nich227/GailanHub";
 
 /**
  * The bar stays out of the way until you have started reading, then slides in,
- * which is how the wedding site handles it. The hero is centred and needs the
+ * which is how the wedding site handles it. The hero is centered and needs the
  * space more than the navigation does.
  */
 export default function Nav() {
