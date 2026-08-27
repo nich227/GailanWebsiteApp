@@ -1,0 +1,539 @@
+/*
+ * Nothing's design language, read off nothing.tech: monochrome, one red, dot
+ * matrix for display type, monospace for anything small, hairlines instead of
+ * shadows, and a grid you can see. Keyfold's structure on top of it: a floating
+ * pill of navigation, one enormous headline, a black pill to download.
+ */
+
+:root {
+  --paper: #f1f1ef;
+  --paper-raised: #f7f7f5;
+  --ink: #0b0b0c;
+  --ink-soft: #45454a;
+  --ink-faint: #8a8a90;
+  --rule: rgba(11, 11, 12, 0.12);
+  --rule-strong: rgba(11, 11, 12, 0.24);
+  --red: #d71921;
+
+  --grid: 88px;
+  --page: 1180px;
+
+  --mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --sans: var(--font-sans), -apple-system, "Helvetica Neue", Arial, sans-serif;
+  --dots: var(--font-dots), var(--font-mono), monospace;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* The grid, drawn rather than implied. Fixed so sections slide over it. */
+.grid-lines {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--rule) 0 1px,
+    transparent 1px var(--grid)
+  );
+  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
+  opacity: 0.7;
+}
+
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: var(--page);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+/* ---------- type ---------- */
+
+.label {
+  font-family: var(--mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.label-ink {
+  color: var(--ink);
+}
+
+.dots {
+  font-family: var(--dots);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+h1 {
+  font-family: var(--sans);
+  font-size: clamp(2.75rem, 7.5vw, 5.75rem);
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  font-weight: 700;
+}
+
+h2 {
+  font-size: clamp(1.75rem, 3.4vw, 2.75rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 700;
+}
+
+h3 {
+  font-size: 1.0625rem;
+  letter-spacing: -0.01em;
+  font-weight: 650;
+}
+
+p {
+  color: var(--ink-soft);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+code,
+.mono {
+  font-family: var(--mono);
+  font-size: 0.875em;
+}
+
+/* ---------- navigation ---------- */
+
+.nav-wrap {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  padding: 18px 24px;
+  backdrop-filter: blur(12px);
+}
+
+.nav {
+  max-width: var(--page);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 10px 12px 10px 20px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: rgba(247, 247, 245, 0.82);
+}
+
+.nav-links {
+  display: flex;
+  gap: 26px;
+  margin-left: auto;
+}
+
+.nav-links a {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  transition: color 0.15s ease;
+}
+
+.nav-links a:hover {
+  color: var(--ink);
+}
+
+.wordmark {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-family: var(--dots);
+  font-size: 15px;
+  letter-spacing: 0.1em;
+}
+
+.wordmark-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+/* ---------- buttons ---------- */
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  padding: 11px 20px;
+  border-radius: 999px;
+  background: var(--ink);
+  color: var(--paper);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  border: 1px solid var(--ink);
+  transition: background 0.15s ease, color 0.15s ease;
+  white-space: nowrap;
+}
+
+.pill:hover {
+  background: transparent;
+  color: var(--ink);
+}
+
+.pill-ghost {
+  background: transparent;
+  color: var(--ink);
+}
+
+.pill-ghost:hover {
+  background: var(--ink);
+  color: var(--paper);
+}
+
+/* ---------- hero ---------- */
+
+.hero {
+  padding: clamp(60px, 11vh, 120px) 0 0;
+  text-align: center;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 14px 7px 11px;
+  border: 1px solid var(--rule);
+  border-radius: 999px;
+  margin-bottom: 30px;
+}
+
+.eyebrow-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--red);
+}
+
+.hero-sub {
+  max-width: 34rem;
+  margin: 22px auto 0;
+  font-size: 1.0625rem;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  margin-top: 34px;
+  flex-wrap: wrap;
+}
+
+.hero-meta {
+  display: flex;
+  gap: 22px;
+  justify-content: center;
+  margin-top: 20px;
+  flex-wrap: wrap;
+}
+
+/* ---------- the desktop mock ---------- */
+
+.mock {
+  margin: 64px auto 0;
+  border: 1px solid var(--rule-strong);
+  border-radius: 14px;
+  overflow: hidden;
+  background: #12141c;
+  aspect-ratio: 16 / 10;
+  position: relative;
+}
+
+.mock-bar {
+  height: 26px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 0 11px;
+  background: rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.mock-light {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.mock-body {
+  position: absolute;
+  inset: 26px 0 0;
+  background:
+    radial-gradient(120% 130% at 18% 8%, #46587a 0%, #28314a 46%, #141824 100%);
+  padding: 28px;
+  display: flex;
+  gap: 18px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.mock-widget {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(18, 18, 24, 0.44);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
+  padding: 13px 16px;
+  color: #ececf2;
+  font-family: var(--mono);
+  min-width: 148px;
+  backdrop-filter: blur(10px);
+}
+
+.mock-widget-big {
+  font-size: 27px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  font-variant-numeric: tabular-nums;
+}
+
+.mock-widget-line {
+  font-size: 10px;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+  color: rgba(236, 236, 242, 0.55);
+  margin-top: 3px;
+}
+
+/* ---------- sections ---------- */
+
+section {
+  padding: clamp(72px, 12vh, 128px) 0;
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(72px, 12vh, 128px);
+}
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-bottom: 44px;
+  flex-wrap: wrap;
+}
+
+.section-number {
+  font-family: var(--dots);
+  font-size: 13px;
+  color: var(--red);
+}
+
+.section-lede {
+  max-width: 40rem;
+  margin-top: 14px;
+  font-size: 1.0625rem;
+}
+
+/* ---------- feature grid ---------- */
+
+.features {
+  display: grid;
+  /* three across, so six features fill two rows exactly and the block has no
+     ragged edge */
+  grid-template-columns: repeat(3, 1fr);
+  border: 1px solid var(--rule);
+}
+
+@media (max-width: 960px) {
+  .features {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .features {
+    grid-template-columns: 1fr;
+  }
+}
+
+.feature {
+  padding: 28px 26px 30px;
+  border-right: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+/* the rightmost column and the bottom row already have the container's border */
+.feature:nth-child(3n) {
+  border-right: none;
+}
+
+.feature:nth-last-child(-n + 3) {
+  border-bottom: none;
+}
+
+.feature-index {
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  margin-bottom: 20px;
+  display: block;
+}
+
+.feature h3 {
+  margin-bottom: 9px;
+}
+
+.feature p {
+  font-size: 0.9375rem;
+}
+
+/* ---------- code ---------- */
+
+.code {
+  border: 1px solid var(--rule);
+  background: var(--ink);
+  color: #ececea;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.code-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 9px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: rgba(236, 236, 234, 0.5);
+}
+
+.code pre {
+  padding: 20px 18px;
+  overflow-x: auto;
+  font-family: var(--mono);
+  font-size: 12.5px;
+  line-height: 1.75;
+}
+
+.code .k {
+  color: #ff9aa0;
+}
+
+.code .s {
+  color: #a8e6a3;
+}
+
+.code .c {
+  color: rgba(236, 236, 234, 0.42);
+}
+
+.split {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(330px, 1fr));
+  gap: 44px;
+  align-items: start;
+}
+
+/* ---------- spec table ---------- */
+
+.spec {
+  border: 1px solid var(--rule);
+}
+
+.spec-row {
+  display: grid;
+  grid-template-columns: minmax(160px, 1fr) 2fr;
+  border-bottom: 1px solid var(--rule);
+}
+
+.spec-row:last-child {
+  border-bottom: none;
+}
+
+.spec-key,
+.spec-value {
+  padding: 15px 20px;
+}
+
+.spec-key {
+  border-right: 1px solid var(--rule);
+  background: var(--paper-raised);
+}
+
+.spec-value {
+  font-family: var(--mono);
+  font-size: 13px;
+}
+
+/* ---------- footer ---------- */
+
+footer {
+  border-top: 1px solid var(--rule);
+  margin-top: clamp(72px, 12vh, 128px);
+  padding: 44px 0 60px;
+}
+
+.footer-inner {
+  display: flex;
+  gap: 26px;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  align-items: flex-start;
+}
+
+.footer-links {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.footer-note {
+  max-width: 30rem;
+  font-size: 0.8125rem;
+  color: var(--ink-faint);
+}
+
+@media (max-width: 720px) {
+  .nav-links {
+    display: none;
+  }
+
+  .grid-lines {
+    display: none;
+  }
+
+  .spec-row {
+    grid-template-columns: 1fr;
+  }
+
+  .spec-key {
+    border-right: none;
+    border-bottom: 1px solid var(--rule);
+  }
+}
