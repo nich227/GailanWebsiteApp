@@ -131,17 +131,7 @@ code,
   right: 0;
   z-index: 20;
   padding: 18px 24px;
-  /* out of the way until there is something to come back to */
-  opacity: 0;
-  transform: translateY(-118%);
-  pointer-events: none;
-  transition: opacity 0.28s ease, transform 0.28s ease;
-}
-
-.nav-shown {
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
+  transition: padding 0.25s ease;
 }
 
 .nav {
@@ -150,10 +140,27 @@ code,
   display: flex;
   align-items: center;
   gap: 28px;
-  padding: 10px 12px 10px 20px;
-  border: 1px solid var(--rule);
+  padding: 10px 12px 10px 16px;
+  /* over the hero: flat, no pill, nothing behind it */
+  border: 1px solid transparent;
   border-radius: 999px;
+  background: transparent;
+  position: relative;
+  transition: background 0.25s ease, border-color 0.25s ease,
+    backdrop-filter 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* once past the hero it collects into a pill you can read against the page */
+.nav-scrolled .nav {
+  border-color: var(--rule);
   background: rgba(247, 247, 245, 0.82);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 12px rgba(11, 11, 12, 0.04);
+}
+
+.nav-scrolled {
+  padding-top: 12px;
+  padding-bottom: 12px;
 }
 
 .nav-links {
@@ -171,11 +178,56 @@ code,
 
 .nav-icon {
   display: block;
-  width: 28px;
-  height: 28px;
+  width: 26px;
+  height: 26px;
   /* the icon is a disc, so anything else clips its edge */
   border-radius: 50%;
+}
+
+/* ---------- the menu, under 720px ---------- */
+
+.nav-burger {
+  display: none;
+  width: 34px;
+  height: 34px;
+  padding: 0;
   border: 1px solid var(--rule);
+  border-radius: 999px;
+  background: transparent;
+  cursor: pointer;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+}
+
+.burger-bar {
+  display: block;
+  width: 15px;
+  height: 1.5px;
+  background: var(--ink);
+  border-radius: 2px;
+  transition: transform 0.18s ease, opacity 0.18s ease;
+}
+
+.burger-hidden {
+  opacity: 0;
+}
+
+.burger-top-x {
+  transform: translateY(5.5px) rotate(45deg);
+}
+
+.burger-bottom-x {
+  transform: translateY(-5.5px) rotate(-45deg);
+}
+
+.nav-menu {
+  display: none;
+}
+
+.nav-menu[hidden] {
+  display: none;
 }
 
 .nav-links a {
@@ -551,6 +603,45 @@ footer {
 @media (max-width: 720px) {
   .nav-links {
     display: none;
+  }
+
+  .nav-burger {
+    display: flex;
+  }
+
+  .nav-menu:not([hidden]) {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    right: 0;
+    padding: 10px;
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    background: rgba(247, 247, 245, 0.96);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 12px 30px rgba(11, 11, 12, 0.08);
+  }
+
+  .nav-menu a {
+    padding: 11px 12px;
+    border-radius: 8px;
+    font-family: var(--mono);
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+  }
+
+  .nav-menu a:active {
+    background: rgba(11, 11, 12, 0.05);
+  }
+
+  /* the pill is the wide layout's affordance; on a phone the menu is */
+  .nav-right .pill {
+    padding: 9px 14px;
   }
 
   .grid-lines {
