@@ -1,8 +1,8 @@
 /*
- * Nothing's design language, read off nothing.tech: monochrome, one red, dot
- * matrix for display type, monospace for anything small, hairlines instead of
- * shadows, and a grid you can see. Keyfold's structure on top of it: a floating
- * pill of navigation, one enormous headline, a black pill to download.
+ * Minimalist and industrial: monochrome with one red, dot matrix for display
+ * type, monospace for anything small, hairlines instead of shadows, and a grid
+ * you can see. Keyfold's structure on top of it: a floating pill of navigation,
+ * one enormous headline, a black pill to download.
  */
 
 :root {
@@ -125,11 +125,23 @@ code,
 /* ---------- navigation ---------- */
 
 .nav-wrap {
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 20;
   padding: 18px 24px;
-  backdrop-filter: blur(12px);
+  /* out of the way until there is something to come back to */
+  opacity: 0;
+  transform: translateY(-118%);
+  pointer-events: none;
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.nav-shown {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 
 .nav {
@@ -150,6 +162,22 @@ code,
   margin-left: auto;
 }
 
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-left: 22px;
+}
+
+.nav-icon {
+  display: block;
+  width: 28px;
+  height: 28px;
+  /* the icon is a disc, so anything else clips its edge */
+  border-radius: 50%;
+  border: 1px solid var(--rule);
+}
+
 .nav-links a {
   font-family: var(--mono);
   font-size: 11px;
@@ -167,6 +195,7 @@ code,
   display: flex;
   align-items: center;
   gap: 9px;
+  margin-right: 8px;
   font-family: var(--dots);
   font-size: 15px;
   letter-spacing: 0.1em;

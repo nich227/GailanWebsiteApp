@@ -1,3 +1,5 @@
+import Nav from "@/components/Nav";
+
 const REPO = "https://github.com/nich227/Gailan";
 const HUB = "https://github.com/nich227/GailanHub";
 
@@ -108,24 +110,7 @@ function Mock() {
 export default function Home() {
   return (
     <>
-      <div className="nav-wrap">
-        <nav className="nav">
-          <a className="wordmark" href="#top">
-            <span className="wordmark-dot" />
-            GAILAN
-          </a>
-          <div className="nav-links">
-            <a href="#what">What it is</a>
-            <a href="#write">Writing widgets</a>
-            <a href="#glass">Glass</a>
-            <a href="#specs">Specs</a>
-            <a href={HUB}>Widgets</a>
-          </div>
-          <a className="pill" href={`${REPO}/releases`}>
-            Download
-          </a>
-        </nav>
-      </div>
+      <Nav />
 
       <main className="page" id="top">
         <header className="hero">

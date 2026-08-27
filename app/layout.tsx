@@ -4,7 +4,7 @@ import "./globals.css";
 
 /* Three faces, each with one job: a tight grotesque for headlines, monospace for
    anything small or technical, and a dot matrix for the wordmark and the section
-   numbers, which is the part of Nothing's language you notice first. */
+   numbers, which is what gives the page its instrument-panel feel. */
 const sans = Inter_Tight({
   subsets: ["latin"],
   variable: "--font-sans",
@@ -28,6 +28,7 @@ export const metadata: Metadata = {
   title: "Gailan — widgets on your desktop, written in TypeScript",
   description:
     "A macOS desktop widget host. Widgets are TypeScript modules, bundled by esbuild as you save them, glassed by macOS, and driven from Shortcuts or AppleScript.",
+  icons: {icon: "/favicon.png", apple: "/gailan-icon.png"},
   openGraph: {
     title: "Gailan",
     description:
