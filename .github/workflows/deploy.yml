@@ -1,0 +1,51 @@
+name: deploy
+
+# Two ways to get this site onto Cloudflare Pages. If you connect the repository
+# in the Cloudflare dashboard, Pages builds it itself and this workflow is not
+# needed. This is the other way: GitHub builds it and uploads the result, which
+# keeps the build logs in the repository and works for a private repo without
+# installing Cloudflare's GitHub App.
+#
+# It stays dormant until you set the repository variable CLOUDFLARE_DEPLOY to
+# true, so it cannot fail before it is configured.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 24
+      - run: npm install --no-audit --no-fund
+      - run: npm run build
+      - uses: actions/upload-artifact@v5
+        with:
+          name: site
+          path: out/
+          retention-days: 7
+
+  pages:
+    needs: build
+    if: ${{ vars.CLOUDFLARE_DEPLOY == 'true' }}
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
+    steps:
+      - uses: actions/download-artifact@v5
+        with:
+          name: site
+          path: out
+      - name: Upload to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          # must match the Pages project name exactly
+          command: pages deploy out --project-name=gailan-website

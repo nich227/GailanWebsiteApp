@@ -31,6 +31,36 @@ older one. Nothing else needs configuring, and there are no secrets.
 a server at request time, route handlers, middleware, image optimisation, will
 fail the build rather than fail quietly in production.
 
+### Connecting it, the short way
+
+In the Cloudflare dashboard: **Workers & Pages** → **Create** → **Pages** →
+**Connect to Git**, pick `nich227/GailanWebsiteApp`, then set the build command,
+output directory and Node version from the table above. Every push to `main`
+deploys, and pull requests get their own preview URL. Nothing else to install.
+
+### Connecting it, the other way
+
+If you would rather GitHub built it, `.github/workflows/deploy.yml` builds the
+site and uploads the result with wrangler. It is useful when the repository is
+private and you do not want Cloudflare's GitHub App on it, or when you want the
+build logs beside the code.
+
+It does nothing until you turn it on:
+
+1. Create the Pages project once, so there is something to upload to:
+   `npx wrangler pages project create gailan-website --production-branch main`
+2. In the repository, add two secrets under **Settings → Secrets and variables →
+   Actions**: `CLOUDFLARE_API_TOKEN` (a token with the **Cloudflare Pages: Edit**
+   permission) and `CLOUDFLARE_ACCOUNT_ID` (from the dashboard sidebar).
+3. Add a repository **variable** in the same place: `CLOUDFLARE_DEPLOY` = `true`.
+
+The deploy job is skipped while that variable is unset, so the workflow does not
+fail before it is configured. `npm run deploy` does the same thing from your
+machine once `wrangler login` has run.
+
+Do not do both. Two sources deploying the same project fight over which build is
+live.
+
 ## The design
 
 Nothing's design language: monochrome on paper white, one red, dot matrix for the
