@@ -12,6 +12,36 @@ npm run build      # writes out/
 npm start          # serves out/ to check the export
 ```
 
+## pages.dev or workers.dev
+
+Cloudflare has two products that serve this equally well, and the dashboard now
+steers new projects towards Workers, so it is easy to end up on `workers.dev`
+while expecting `pages.dev`.
+
+Either is fine. The site is a directory of files; both just serve it. Pages gives
+a preview URL for every pull request without configuration. Workers with static
+assets is where Cloudflare is putting its effort. Attach a custom domain and the
+difference disappears.
+
+**For a `pages.dev` URL**, create a Pages project. In the dashboard this is
+**Workers & Pages → Create → the Pages tab**, which sits beside Workers and is
+easy to miss. Or skip the dashboard:
+
+```sh
+npx wrangler login
+npx wrangler pages project create gailan-website --production-branch main
+npm run deploy          # builds, then uploads out/
+```
+
+**For a `workers.dev` URL**, `wrangler.jsonc` is already set up to serve `out/`
+as an assets-only Worker:
+
+```sh
+npm run deploy:worker
+```
+
+Do not point both at the same custom domain.
+
 ## Deploying to Cloudflare Pages
 
 The site is a static export, so Pages serves it directly. No adapter, no

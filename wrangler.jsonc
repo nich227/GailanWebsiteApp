@@ -1,0 +1,16 @@
+{
+  // For deploying the site as a Worker serving static assets, which is what the
+  // dashboard creates by default now and gives a workers.dev URL. There is no
+  // script: a Worker with only assets serves them directly.
+  //
+  // Pages does not read this file. `wrangler pages deploy out` takes the
+  // directory on the command line instead.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "gailan-website",
+  "compatibility_date": "2026-08-27",
+  "assets": {
+    "directory": "./out",
+    // the export writes 404.html, so serve it for unknown paths
+    "not_found_handling": "404-page"
+  }
+}
