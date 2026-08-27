@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import Nav from "@/components/Nav";
 
 const REPO = "https://github.com/nich227/Gailan";
@@ -138,9 +140,8 @@ export default function Home() {
           </h1>
 
           <p className="hero-sub">
-            Gailan runs widgets on your macOS desktop. They are TypeScript files
-            in a folder: save one and it is on screen before you have switched
-            windows.
+            Gailan runs widgets on your macOS desktop. Each one is a TypeScript
+            file in a folder. Save it and it appears.
           </p>
 
           <div className="hero-actions">
@@ -322,12 +323,18 @@ export default function Home() {
         <div className="page footer-inner">
           <div>
             <div className="wordmark" style={{ marginBottom: 12 }}>
-              <span className="wordmark-dot" />
+              <Image
+                className="nav-icon"
+                src="/gailan-icon.png"
+                alt=""
+                width={26}
+                height={26}
+              />
               GAILAN
             </div>
             <p className="footer-note">
-              Gailan is a fork of Übersicht by Felix Hageloh, whose work the
-              widget system is. © 2026 Kevin Chen, GPL-3.0-or-later.
+              Gailan is a fork of Übersicht by Felix Hageloh. © 2026 Kevin
+              Chen, GPL-3.0-or-later.
             </p>
           </div>
           <div className="footer-links">

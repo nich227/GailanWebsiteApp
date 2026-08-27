@@ -255,13 +255,6 @@ code,
   letter-spacing: 0.1em;
 }
 
-.wordmark-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--red);
-}
-
 /* ---------- buttons ---------- */
 
 .pill {
