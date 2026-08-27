@@ -48,4 +48,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           # must match the Pages project name exactly
-          command: pages deploy out --project-name=gailan-website
+          command: pages deploy out --project-name=gailanapp

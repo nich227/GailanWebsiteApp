@@ -8,7 +8,7 @@
     "build": "next build",
     "start": "npx serve out",
     "lint": "next lint",
-    "deploy": "npm run build && npx wrangler pages deploy out --project-name=gailan-website",
+    "deploy": "npm run build && npx wrangler pages deploy out --project-name=gailanapp",
     "deploy:worker": "npm run build && npx wrangler deploy"
   },
   "dependencies": {

@@ -6,7 +6,7 @@
   // Pages does not read this file. `wrangler pages deploy out` takes the
   // directory on the command line instead.
   "$schema": "node_modules/wrangler/config-schema.json",
-  "name": "gailan-website",
+  "name": "gailanapp",
   "compatibility_date": "2026-08-27",
   "assets": {
     "directory": "./out",

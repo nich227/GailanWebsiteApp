@@ -29,7 +29,7 @@ easy to miss. Or skip the dashboard:
 
 ```sh
 npx wrangler login
-npx wrangler pages project create gailan-website --production-branch main
+npx wrangler pages project create gailanapp --production-branch main
 npm run deploy          # builds, then uploads out/
 ```
 
@@ -78,7 +78,7 @@ build logs beside the code.
 It does nothing until you turn it on:
 
 1. Create the Pages project once, so there is something to upload to:
-   `npx wrangler pages project create gailan-website --production-branch main`
+   `npx wrangler pages project create gailanapp --production-branch main`
 2. In the repository, add two secrets under **Settings → Secrets and variables →
    Actions**: `CLOUDFLARE_API_TOKEN` (a token with the **Cloudflare Pages: Edit**
    permission) and `CLOUDFLARE_ACCOUNT_ID` (from the dashboard sidebar).
