@@ -172,8 +172,10 @@ code,
 .nav-right {
   display: flex;
   align-items: center;
-  gap: 14px;
-  margin-left: 22px;
+  gap: 12px;
+  /* auto, not a fixed gap: with the links hidden on a phone there is nothing
+     else pushing this to the edge */
+  margin-left: auto;
 }
 
 .nav-icon {
@@ -279,6 +281,12 @@ code,
   white-space: nowrap;
 }
 
+.pill-mark {
+  display: block;
+  /* the glyph sits a hair high against uppercase text */
+  margin-top: -1px;
+}
+
 .pill:hover {
   background: transparent;
   color: var(--ink);
@@ -299,23 +307,6 @@ code,
 .hero {
   padding: clamp(60px, 11vh, 120px) 0 0;
   text-align: center;
-}
-
-.eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 7px 14px 7px 11px;
-  border: 1px solid var(--rule);
-  border-radius: 999px;
-  margin-bottom: 30px;
-}
-
-.eyebrow-dot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--red);
 }
 
 .hero-sub {

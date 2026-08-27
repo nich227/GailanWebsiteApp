@@ -74,10 +74,7 @@ export default function Nav() {
         </div>
 
         <div className="nav-right">
-          <a className="pill" href={`${REPO}/releases`}>
-            Download
-          </a>
-
+          {/* the menu button comes first, so Download stays at the edge */}
           <button
             className="nav-burger"
             type="button"
@@ -93,6 +90,10 @@ export default function Nav() {
               className={menuOpen ? "burger-bar burger-bottom-x" : "burger-bar"}
             />
           </button>
+
+          <a className="pill" href={`${REPO}/releases`}>
+            Download
+          </a>
         </div>
 
         <div className="nav-menu" id="nav-menu" hidden={!menuOpen}>

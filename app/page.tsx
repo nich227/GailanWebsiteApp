@@ -3,6 +3,23 @@ import Nav from "@/components/Nav";
 const REPO = "https://github.com/nich227/Gailan";
 const HUB = "https://github.com/nich227/GailanHub";
 
+/* Apple's own outline, drawn rather than pulled from an icon font so it inherits
+   the button's color and needs nothing loaded. */
+function AppleMark() {
+  return (
+    <svg
+      className="pill-mark"
+      viewBox="0 0 384 512"
+      width="13"
+      height="13"
+      aria-hidden="true"
+      fill="currentColor"
+    >
+      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-36.8-2.8-77 21.3-91.7 21.3-15.5 0-51.1-20.3-79.1-20.3C56.7 141.2 4 184.5 4 272.1c0 25.9 4.7 52.7 14.2 80.2 12.6 36.2 29.4 70.5 50.3 102.8 18 27.8 32.7 41.7 44.3 41.7 17.4 0 30.9-11.4 55.9-11.4 24.6 0 34.1 11.1 55.9 11.1 11.8 0 25.9-13.6 42.3-40.7 25-41.3 38.1-73.9 39.3-97.8-33.8-16-50.7-45.2-50.8-89.3zM260.8 87.4C277 67.7 285 46.6 285 24c0-3.1-.2-6.4-.7-9.8-15.2 .9-31.2 8.5-47.9 22.9-16.7 14.4-27.3 30.6-31.8 48.6 15.6 1.2 29.9-4.5 42.9-17.1 4.5-4.4 8.9-8.6 13.3-12.6z" />
+    </svg>
+  );
+}
+
 const FEATURES = [
   {
     title: "Widgets are TypeScript",
@@ -114,11 +131,6 @@ export default function Home() {
 
       <main className="page" id="top">
         <header className="hero">
-          <span className="eyebrow">
-            <span className="eyebrow-dot" />
-            <span className="label label-ink">A fork of Übersicht, rebuilt</span>
-          </span>
-
           <h1>
             Your desktop,
             <br />
@@ -133,6 +145,7 @@ export default function Home() {
 
           <div className="hero-actions">
             <a className="pill" href={`${REPO}/releases`}>
+              <AppleMark />
               Download for Mac
             </a>
             <a className="pill pill-ghost" href={REPO}>
