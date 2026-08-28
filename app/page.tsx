@@ -110,17 +110,18 @@ function GitHubMark() {
 
 const FEATURES = [
   {
+    title: "Change nearly all of it",
+    body: "A widget can offer its own settings, and Gailan turns them into real controls: a switch, a menu, a number, a colour picker. Pick the clock's face, set how often something checks, choose the colour it draws in, without opening a file. Move a widget where you want it, put it on one screen or all of them, turn it off without deleting it.",
+  },
+  {
     title: "Anything you want to see",
-    body: "The weather, your calendar, how full the disk is, what the trains are doing. A widget is a small thing that shows you something, and you decide which ones you keep.",
+    body: "The weather, your calendar, how full the disk is, what the trains are doing. A widget is a small thing that shows you something, and you decide which ones you keep. If nothing does quite what you want, the ones you have are files you can change.",
   },
   {
     title: "Behind your windows, or in front",
     body: "By default widgets sit on the wallpaper, waiting for you to clear your screen. If you would rather one stayed in front of everything, there is a switch for that. You pick which screens each widget appears on, so the one you want in the corner of the big monitor stays there.",
   },
-  {
-    title: "Yours to arrange",
-    body: "Move them where you like, choose which screens they appear on, and change what each one shows in its own settings. Turn one off without deleting it.",
-  },
+
   {
     title: "It fits right into your Mac",
     body: "Widgets can ask the system to frost the wallpaper behind them, and they follow light and dark as you switch, so they belong on the desktop rather than sitting on top of it.",
@@ -228,8 +229,10 @@ export default function Home() {
               <p className="section-lede">
                 Gailan puts small, useful things on your wallpaper: the time, the
                 weather, what your machine is doing, whatever you care to watch.
-                They stay behind your windows until you want them, and you decide
-                what appears and where.
+                Then it gets out of the way of how you want them. What appears,
+                where it sits, what it shows, how big it is, which screen it lives
+                on, all of it is yours to change, and every widget is a file you
+                can open and rewrite.
               </p>
             </div>
           </div>
