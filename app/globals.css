@@ -328,6 +328,37 @@ code,
 
 /* ---------- the desktop mock ---------- */
 
+/* The plain mark is there until the pointer is, and then the stripes are. Both are
+   drawn, so the swap is an opacity change rather than a load. */
+.apple-rainbow {
+  opacity: 0;
+}
+
+.pill:hover .apple-plain {
+  opacity: 0;
+}
+
+.pill:hover .apple-rainbow {
+  opacity: 1;
+}
+
+.apple-plain,
+.apple-rainbow {
+  transition: opacity 0.18s ease;
+}
+
+.pill-mark-apple {
+  /* the grid is taller than it is wide, so it needs a touch more room */
+  margin-top: -1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .apple-plain,
+  .apple-rainbow {
+    transition: none;
+  }
+}
+
 /* ---------- arriving ---------- */
 
 /* Hidden only when the layout has said javascript is running, so a page without it

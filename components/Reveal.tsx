@@ -9,49 +9,51 @@ import { useEffect } from "react";
  * painted, so nothing is ever visible and then snatched away. Without JavaScript the
  * flag is never set, so the page is simply a page.
  *
- * A machine asked for less movement gets none: the media query in the stylesheet
- * leaves everything visible, and this still runs, which costs nothing and keeps the
+ * This sweeps on scroll rather than watching for intersections. An observer looks
+ * like the right tool until a jump straight down the page skips a section without
+ * ever reporting it, and that section then sits invisible with nothing to bring it
+ * back. Checking where things are is duller and always right.
+ *
+ * A machine asked for less movement gets none: the stylesheet leaves everything
+ * visible under that query, and this still runs, which costs nothing and keeps the
  * two from disagreeing.
  */
 export default function Reveal() {
   useEffect(() => {
-    const targets = Array.from(
-      document.querySelectorAll<HTMLElement>(".reveal")
-    );
-    if (!targets.length) return;
+    let pending = false;
 
-    const show = (el: HTMLElement) => el.classList.add("reveal-in");
+    const sweep = () => {
+      pending = false;
+      const targets = document.querySelectorAll<HTMLElement>(
+        ".reveal:not(.reveal-in)"
+      );
+      if (!targets.length) return;
 
-    // the hero is already where you are looking
-    const hero = targets.find((el) => el.classList.contains("hero"));
-    if (hero) {
-      // a frame later, so the transition has a state to move from
-      requestAnimationFrame(() => show(hero));
-    }
+      // a little short of the bottom, so a section is arriving rather than
+      // appearing once it is already there
+      const line = window.innerHeight * 0.92;
+      targets.forEach((el) => {
+        if (el.getBoundingClientRect().top < line) el.classList.add("reveal-in");
+      });
+    };
 
-    const rest = targets.filter((el) => el !== hero);
+    const onScroll = () => {
+      if (pending) return;
+      pending = true;
+      requestAnimationFrame(sweep);
+    };
 
-    if (!("IntersectionObserver" in window)) {
-      rest.forEach(show);
-      return;
-    }
+    // the hero is already where you are looking: a frame later, so the transition
+    // has a state to move from
+    requestAnimationFrame(sweep);
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (!entry.isIntersecting) return;
-          show(entry.target as HTMLElement);
-          // once it has arrived it stays: this is a welcome, not an effect
-          observer.unobserve(entry.target);
-        });
-      },
-      // a little before it reaches the bottom of the window, so it is already
-      // arriving rather than appearing after the fact
-      { rootMargin: "0px 0px -12% 0px", threshold: 0.05 }
-    );
+    window.addEventListener("scroll", onScroll, {passive: true});
+    window.addEventListener("resize", onScroll);
 
-    rest.forEach((el) => observer.observe(el));
-    return () => observer.disconnect();
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
   }, []);
 
   return null;

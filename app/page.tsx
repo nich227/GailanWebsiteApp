@@ -8,17 +8,84 @@ const HUB = "https://github.com/nich227/GailanHub";
 
 /* Both marks are drawn rather than pulled from an icon font, so they inherit the
    button's color and need nothing loaded. */
+/* Drawn a pixel at a time on a grid, the way it was in 1977, because the smooth
+   outline turns to mush at the size a button wants it. Hover and it goes rainbow, in
+   the order the six stripes ran: green at the leaf, blue at the feet. */
+const APPLE = [
+  "..........##..",
+  ".........##...",
+  "........##....",
+  "...####..##...",
+  "..#########...",
+  ".############.",
+  ".############.",
+  ".############.",
+  ".############.",
+  ".############.",
+  ".############.",
+  "..##########..",
+  "..##########..",
+  "...########...",
+  "...##....##...",
+];
+
+/* green, yellow, orange, red, purple, blue, over the height of the apple */
+const STRIPES = [
+  "#61bb46",
+  "#fdb827",
+  "#f5821f",
+  "#e03a3e",
+  "#963d97",
+  "#009ddc",
+];
+
+function stripeFor(row: number) {
+  const band = Math.floor((row / APPLE.length) * STRIPES.length);
+  return STRIPES[Math.min(band, STRIPES.length - 1)];
+}
+
+function applePixels(colored: boolean) {
+  const pixels: React.ReactElement[] = [];
+
+  APPLE.forEach((row, y) => {
+    // runs of pixels become one rect, so there are a dozen rather than a hundred
+    let x = 0;
+    while (x < row.length) {
+      if (row[x] !== "#") {
+        x += 1;
+        continue;
+      }
+      let width = 0;
+      while (row[x + width] === "#") width += 1;
+      pixels.push(
+        <rect
+          key={`${y}-${x}`}
+          x={x}
+          y={y}
+          width={width}
+          height={1}
+          fill={colored ? stripeFor(y) : "currentColor"}
+        />
+      );
+      x += width;
+    }
+  });
+
+  return pixels;
+}
+
 function AppleMark() {
   return (
     <svg
-      className="pill-mark"
-      viewBox="0 0 384 512"
+      className="pill-mark pill-mark-apple"
+      viewBox={`0 0 ${APPLE[0].length} ${APPLE.length}`}
       width="13"
-      height="13"
+      height="14"
       aria-hidden="true"
-      fill="currentColor"
+      shapeRendering="crispEdges"
     >
-      <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-36.8-2.8-77 21.3-91.7 21.3-15.5 0-51.1-20.3-79.1-20.3C56.7 141.2 4 184.5 4 272.1c0 25.9 4.7 52.7 14.2 80.2 12.6 36.2 29.4 70.5 50.3 102.8 18 27.8 32.7 41.7 44.3 41.7 17.4 0 30.9-11.4 55.9-11.4 24.6 0 34.1 11.1 55.9 11.1 11.8 0 25.9-13.6 42.3-40.7 25-41.3 38.1-73.9 39.3-97.8-33.8-16-50.7-45.2-50.8-89.3zM260.8 87.4C277 67.7 285 46.6 285 24c0-3.1-.2-6.4-.7-9.8-15.2 .9-31.2 8.5-47.9 22.9-16.7 14.4-27.3 30.6-31.8 48.6 15.6 1.2 29.9-4.5 42.9-17.1 4.5-4.4 8.9-8.6 13.3-12.6z" />
+      <g className="apple-plain">{applePixels(false)}</g>
+      <g className="apple-rainbow">{applePixels(true)}</g>
     </svg>
   );
 }
