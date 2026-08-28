@@ -298,7 +298,9 @@ code,
 /* ---------- hero ---------- */
 
 .hero {
-  padding: clamp(60px, 11vh, 120px) 0 0;
+  /* the bar is fixed and about 76px tall, so the old 60px minimum tucked the
+     headline under it on a short window */
+  padding: clamp(124px, 15vh, 190px) 0 0;
   text-align: center;
 }
 
