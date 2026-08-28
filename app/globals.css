@@ -326,70 +326,19 @@ code,
 
 /* ---------- the desktop mock ---------- */
 
-.mock {
-  margin: 64px auto 0;
+.shot {
+  margin: 64px 0 0;
   border: 1px solid var(--rule-strong);
   border-radius: 14px;
   overflow: hidden;
   background: #12141c;
-  aspect-ratio: 16 / 10;
-  position: relative;
+  line-height: 0;
 }
 
-.mock-bar {
-  height: 26px;
-  display: flex;
-  align-items: center;
-  gap: 7px;
-  padding: 0 11px;
-  background: rgba(255, 255, 255, 0.06);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.mock-light {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.mock-body {
-  position: absolute;
-  inset: 26px 0 0;
-  background:
-    radial-gradient(120% 130% at 18% 8%, #46587a 0%, #28314a 46%, #141824 100%);
-  padding: 28px;
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  flex-wrap: wrap;
-}
-
-.mock-widget {
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  background: rgba(18, 18, 24, 0.44);
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.14);
-  padding: 13px 16px;
-  color: #ececf2;
-  font-family: var(--mono);
-  min-width: 148px;
-  backdrop-filter: blur(10px);
-}
-
-.mock-widget-big {
-  font-size: 27px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  font-variant-numeric: tabular-nums;
-}
-
-.mock-widget-line {
-  font-size: 10px;
-  letter-spacing: 0.13em;
-  text-transform: uppercase;
-  color: rgba(236, 236, 242, 0.55);
-  margin-top: 3px;
+.shot img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 /* ---------- sections ---------- */

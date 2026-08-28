@@ -98,31 +98,18 @@ function Code() {
   );
 }
 
-function Mock() {
+// The desktop itself, taken with the template in GailanHub, so what the page shows is
+// what the widgets in the hub actually look like on a Mac.
+function Shot() {
   return (
-    <div className="mock" aria-hidden="true">
-      <div className="mock-bar">
-        <span className="mock-light" />
-        <span className="mock-light" />
-        <span className="mock-light" />
-      </div>
-      <div className="mock-body">
-        <div className="mock-widget">
-          <div className="mock-widget-big">14:32</div>
-          <div className="mock-widget-line">Thu 27 Aug</div>
-          <div className="mock-widget-line">day 239 of 365</div>
-        </div>
-        <div className="mock-widget">
-          <div className="mock-widget-big">62%</div>
-          <div className="mock-widget-line">memory in use</div>
-        </div>
-        <div className="mock-widget" style={{ minWidth: 190 }}>
-          <div className="mock-widget-line">now playing</div>
-          <div style={{ fontSize: 13, marginTop: 6 }}>A Love Supreme</div>
-          <div className="mock-widget-line">John Coltrane</div>
-        </div>
-      </div>
-    </div>
+    <figure className="shot">
+      <img
+        src="/desktop.jpg"
+        width={1920}
+        height={1200}
+        alt="A Mac desktop with three Gailan widgets down the left: the time, memory in use, and what is playing."
+      />
+    </figure>
   );
 }
 
@@ -160,7 +147,7 @@ export default function Home() {
             <span className="label">No account</span>
           </div>
 
-          <Mock />
+          <Shot />
         </header>
 
         <section id="what">

@@ -6,11 +6,14 @@ import { useEffect, useState } from "react";
 const REPO = "https://github.com/nich227/Gailan";
 const HUB = "https://github.com/nich227/GailanHub";
 
+// Rooted, not bare fragments: #what means nothing on /hub, so those links went
+// nowhere. With the path in front, the browser goes home and then to the section,
+// and on the home page it still just scrolls.
 const LINKS = [
-  { href: "#what", label: "What it is" },
-  { href: "#write", label: "Writing widgets" },
-  { href: "#glass", label: "Glass" },
-  { href: "#specs", label: "Specs" },
+  { href: "/#what", label: "What it is" },
+  { href: "/#write", label: "Writing widgets" },
+  { href: "/#glass", label: "Glass" },
+  { href: "/#specs", label: "Specs" },
   { href: "/hub", label: "Widgets" },
 ];
 
@@ -53,7 +56,7 @@ export default function Nav() {
   return (
     <div className={`nav-wrap${scrolled ? " nav-scrolled" : ""}`}>
       <nav className="nav">
-        <a className="wordmark" href="#top">
+        <a className="wordmark" href="/#top">
           <Image
             className="nav-icon"
             src="/gailan-icon.png"
