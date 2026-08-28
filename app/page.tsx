@@ -1,6 +1,7 @@
 import Image from "next/image";
 
 import Nav from "@/components/Nav";
+import AppleMark from "@/components/AppleMark";
 import Reveal from "@/components/Reveal";
 import Version from "@/components/Version";
 
@@ -9,18 +10,6 @@ const HUB = "https://github.com/nich227/GailanHub";
 
 /* Both marks are drawn rather than pulled from an icon font, so they inherit the
    button's color and need nothing loaded. */
-/* Apple's own glyph, U+F8FF. It lives in the private use area, so it draws on Apple
-   systems and nowhere else, which is where anyone downloading a Mac app is. Hovering
-   runs the six stripes down it in the order they came, as a gradient clipped to the
-   glyph rather than a second copy of it. */
-function AppleMark() {
-  return (
-    <span className="pill-mark pill-mark-apple" aria-hidden="true">
-      {"\uF8FF"}
-    </span>
-  );
-}
-
 function GitHubMark() {
   return (
     <svg

@@ -345,18 +345,24 @@ code,
 /* ---------- the desktop mock ---------- */
 
 .pill-mark-apple {
-  /* the glyph is in Apple's system fonts and nowhere else */
+  /* the glyph lives in Apple's system fonts and nowhere else */
   font-family:
     -apple-system, BlinkMacSystemFont, "SF Pro Text", "Apple Symbols",
     "Helvetica Neue", sans-serif;
   font-size: 15px;
   line-height: 1;
   transform: translateY(-0.5px);
+
+  /* replaced with the real thing once the glyph has been measured. Covering the whole
+     box is the honest fallback: some stripes land off the ink, which is what happened
+     before anything was measured at all. */
+  --ink-top: 0em;
+  --ink-height: 1em;
 }
 
-/* the six stripes, in the order they ran, clipped to the glyph itself */
+/* the six stripes, in the order they ran, over the ink rather than the line box */
 .pill:hover .pill-mark-apple {
-  background: linear-gradient(
+  background-image: linear-gradient(
     180deg,
     #61bb46 0 17%,
     #fdb827 17% 33%,
@@ -365,6 +371,9 @@ code,
     #963d97 67% 83%,
     #009ddc 83% 100%
   );
+  background-repeat: no-repeat;
+  background-position: 0 var(--ink-top);
+  background-size: 100% var(--ink-height);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
