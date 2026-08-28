@@ -166,10 +166,14 @@ code,
 .nav-links {
   display: flex;
   gap: 26px;
-  margin-left: auto;
+  /* beside the wordmark rather than away across the bar, with room between the two
+     so the name reads as the name and not as the first link */
+  margin-left: 20px;
 }
 
 .nav-right {
+  /* whatever the links take, download stays at the edge */
+  margin-left: auto;
   display: flex;
   align-items: center;
   gap: 12px;
