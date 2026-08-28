@@ -206,7 +206,8 @@ export default function Hub() {
       <div className="hub-footnote">
         <p className="label">
           Widgets are their authors&apos; work, under the license each one names.
-          Read a widget before you run it: it can run shell commands on your Mac.
+          They are given to you as they are, with no warranty: if one goes wrong,
+          neither its author nor Gailan is liable for what follows.
         </p>
       </div>
     </>
