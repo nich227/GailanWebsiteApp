@@ -122,7 +122,7 @@ const FEATURES = [
     body: "Move them where you like, choose which screens they appear on, and change what each one shows in its own settings. Turn one off without deleting it.",
   },
   {
-    title: "It looks like part of the Mac",
+    title: "It fits right into your Mac",
     body: "Widgets can ask the system to frost the wallpaper behind them, and they follow light and dark as you switch, so they belong on the desktop rather than sitting on top of it.",
   },
   {
@@ -130,8 +130,8 @@ const FEATURES = [
     body: "Gailan hands the Shortcuts app five actions: refresh one widget, refresh them all, reload one, show or hide one, and choose which screens it appears on. Put those in a shortcut with anything else your Mac can do. Fetch the forecast and refresh the weather widget so it is current before you look at it. Hide the music widget and show the calendar when you sit down to work, then swap them back at six. Send the calendar to the external display the moment you plug one in. Ask Siri to refresh your widgets, or drive the same things from Automator and AppleScript if that is more your speed.",
   },
   {
-    title: "It stays on your machine",
-    body: "Nothing signs in, nothing is uploaded, and nothing else on your network can reach it. What your widgets read stays where it was read.",
+    title: "As private or as connected as you want",
+    body: "Gailan asks you for nothing: no account, no sign-in, and nothing leaves your Mac of its own accord. Past that it is your call. Plenty of widgets only ever read what is already here, the time, the battery, how full the disk is. One you write can reach anything you hand it the keys to, so a widget that signs in to your broker and shows what your portfolio did today is a widget you can have, as long as they publish an API for it. Either way the keys sit in your keychain and the request goes straight out from your machine.",
   },
 ];
 
