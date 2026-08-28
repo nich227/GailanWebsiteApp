@@ -4,7 +4,7 @@ import Hub from "@/components/Hub";
 import Nav from "@/components/Nav";
 
 export const metadata: Metadata = {
-  title: "Widgets — Gailan Hub",
+  title: "Widget Hub: widgets for Gailan",
   description:
     "Every widget in GailanHub, read from the repository. Download one, unzip it into your widgets folder, and it appears on your desktop.",
 };

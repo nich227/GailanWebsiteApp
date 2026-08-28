@@ -112,7 +112,7 @@ function GitHubMark() {
 const FEATURES = [
   {
     title: "Change nearly all of it",
-    body: "A widget can offer its own settings, and Gailan turns them into real controls: a switch, a menu, a number, a colour picker. Pick the clock's face, set how often something checks, choose the colour it draws in, without opening a file. Move a widget where you want it, put it on one screen or all of them, turn it off without deleting it.",
+    body: "A widget can offer its own settings, and Gailan turns them into real controls: a switch, a menu, a number, a color picker. Pick the clock's face, set how often something checks, choose the color it draws in, without opening a file. Move a widget where you want it, put it on one screen or all of them, turn it off without deleting it.",
   },
   {
     title: "Anything you want to see",
@@ -129,7 +129,7 @@ const FEATURES = [
   },
   {
     title: "It answers to Shortcuts",
-    body: "Gailan hands the Shortcuts app ten actions. Refresh one widget or all of them, reload one, show or hide one, send it behind your windows or in front, choose its screens, change one of its own settings, open its file, keep every widget in front, or draw them light or dark. Put those in a shortcut with anything else your Mac can do. Fetch the forecast and refresh the weather widget so it is current before you look at it. Hide the music widget and show the calendar when you sit down to work, then swap them back at six. Switch the clock to its analog face for the evening. Ask Siri to refresh your widgets, or drive the same things from Automator and AppleScript if that is more your speed.",
+    body: "Gailan hands its actions to the Shortcuts app. Refresh one widget or all of them, reload one, show or hide one, send it behind your windows or in front, choose its screens, change one of its own settings, open its file, keep every widget in front, or draw them light or dark. Put those in a shortcut with anything else your Mac can do. Fetch the forecast and refresh the weather widget so it is current before you look at it. Hide the music widget and show the calendar when you sit down to work, then swap them back at six. Switch the clock to its analog face for the evening. Ask Siri to refresh your widgets, or drive the same things from Automator and AppleScript if that is more your speed.",
   },
   {
     title: "As private or as connected as you want",
@@ -174,9 +174,8 @@ const CLOCK_FILES: [string, string, string][] = [
   ["index.tsx", "13 KB", "The widget itself: what to run, and what to draw with it"],
   ["widget.json", "1 KB", "Its name, its version, and the settings it offers you"],
   ["README.md", "1 KB", "What it does, for anyone who opens the folder"],
-  ["preview.jpg", "123 KB", "The picture the gallery shows"],
-  ["dotmatrix-OFL.txt", "4 KB", "The licence for the numerals it draws with"],
-  ["settings.json", "—", "Written by Gailan when you change something"],
+  ["preview.jpg", "123 KB", "The picture GailanHub shows in its gallery"],
+  ["settings.json", "1 KB", "Written by Gailan when you change one of its settings"],
 ];
 
 /* Drawn rather than photographed: it stays sharp at any size, follows light and dark,
@@ -287,7 +286,7 @@ export default function Home() {
                 Gailan puts small, useful things on your wallpaper: the time, the
                 weather, what your machine is doing, whatever you care to watch.
                 Then it gets out of the way of how you want them. What appears,
-                where it sits, what it shows, how big it is, which screen it lives
+                where it sits, what it shows, how big it is, which screen it appears
                 on, all of it is yours to change, and every widget is a file you
                 can open and rewrite.
               </p>
@@ -336,11 +335,11 @@ export default function Home() {
               </p>
               <p style={{ marginBottom: 18 }}>
                 <strong>What to show</strong> is the shape of it, written the way a
-                web page is written. If you have ever changed a page&apos;s colours
+                web page is written. If you have ever changed a page&apos;s colors
                 or spacing, this is the same work.
               </p>
               <p>
-                There is nothing to set up first and nothing to compile. Gailan
+                You set nothing up and compile nothing. Gailan
                 watches the folder, and when you save, the widget on your desktop
                 changes. If you get something wrong, it says what and points at the
                 line.
@@ -348,9 +347,7 @@ export default function Home() {
             </div>
           </div>
 
-          <h3 className="finder-caption">
-            What is in a widget&apos;s folder
-          </h3>
+          <h3 className="finder-caption">Anatomy of a widget</h3>
           <p className="finder-lede">
             This is the clock from the hub. Only the first file is the widget; the
             others say what it is called, what you are allowed to change, and what it

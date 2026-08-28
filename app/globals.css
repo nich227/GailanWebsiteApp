@@ -396,7 +396,19 @@ code,
   width: 9px;
   height: 9px;
   border-radius: 50%;
-  background: rgba(127, 127, 127, 0.32);
+}
+
+/* the three colors a Mac window actually has */
+.finder-light:nth-child(1) {
+  background: #ff5f57;
+}
+
+.finder-light:nth-child(2) {
+  background: #febc2e;
+}
+
+.finder-light:nth-child(3) {
+  background: #28c840;
 }
 
 .finder-title {

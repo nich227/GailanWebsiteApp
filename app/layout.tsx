@@ -25,14 +25,14 @@ const dots = DotGothic16({
 });
 
 export const metadata: Metadata = {
-  title: "Gailan — widgets on your desktop, written in TypeScript",
+  title: "Gailan: widgets on your Mac's desktop",
   description:
-    "A macOS desktop widget host. Widgets are TypeScript modules, bundled by esbuild as you save them, glassed by macOS, and driven from Shortcuts or AppleScript.",
+    "Widgets on your Mac's desktop: the time, the weather, whatever you want to watch. Change what they show, where they sit, and which screen they are on. Free and open source.",
   icons: {icon: "/favicon.png", apple: "/gailan-icon.png"},
   openGraph: {
     title: "Gailan",
     description:
-      "Widgets on your desktop, written in TypeScript. A fork of Übersicht, rebuilt.",
+      "Widgets on your Mac's desktop, yours to change. A fork of Übersicht, rebuilt.",
     type: "website",
   },
 };

@@ -8,8 +8,8 @@ import { useEffect, useState } from "react";
  *
  * "none" is the honest answer until there is one, and it is also what a failed or
  * rate-limited request leaves behind: GitHub allows sixty unauthenticated calls an
- * hour per address, and a version that quietly stops updating is better than a
- * number that might be wrong.
+ * hour per address, and a version that stops updating is better than a number that
+ * might be wrong.
  *
  * The starting value is the same on the server and in the browser, so there is
  * nothing to reconcile when this hydrates.
