@@ -129,7 +129,7 @@ const FEATURES = [
   },
   {
     title: "It answers to Shortcuts",
-    body: "Gailan hands the Shortcuts app five actions: refresh one widget, refresh them all, reload one, show or hide one, and choose which screens it appears on. Put those in a shortcut with anything else your Mac can do. Fetch the forecast and refresh the weather widget so it is current before you look at it. Hide the music widget and show the calendar when you sit down to work, then swap them back at six. Send the calendar to the external display the moment you plug one in. Ask Siri to refresh your widgets, or drive the same things from Automator and AppleScript if that is more your speed.",
+    body: "Gailan hands the Shortcuts app ten actions. Refresh one widget or all of them, reload one, show or hide one, send it behind your windows or in front, choose its screens, change one of its own settings, open its file, keep every widget in front, or draw them light or dark. Put those in a shortcut with anything else your Mac can do. Fetch the forecast and refresh the weather widget so it is current before you look at it. Hide the music widget and show the calendar when you sit down to work, then swap them back at six. Switch the clock to its analog face for the evening. Ask Siri to refresh your widgets, or drive the same things from Automator and AppleScript if that is more your speed.",
   },
   {
     title: "As private or as connected as you want",
