@@ -8,25 +8,28 @@ const HUB = "https://github.com/nich227/GailanHub";
 
 /* Both marks are drawn rather than pulled from an icon font, so they inherit the
    button's color and need nothing loaded. */
-/* Drawn a pixel at a time on a grid, the way it was in 1977, because the smooth
-   outline turns to mush at the size a button wants it. Hover and it goes rainbow, in
-   the order the six stripes ran: green at the leaf, blue at the feet. */
+/* The mark itself, rasterised to a grid and drawn a square at a time, because the
+   smooth outline turns to mush at the size a button wants it. Rasterised rather than
+   drawn by hand so the bite, the notch between the lobes and the detached leaf are
+   the real ones. Hover and it goes rainbow, in the order the six stripes ran: green
+   at the leaf, blue at the bottom. */
 const APPLE = [
-  "..........##..",
   ".........##...",
-  "........##....",
-  "...####..##...",
-  "..#########...",
+  ".........##...",
+  "..............",
+  "...####..####.",
+  "..############",
+  ".#############",
   ".############.",
   ".############.",
-  ".############.",
-  ".############.",
-  ".############.",
-  ".############.",
+  ".##########...",
+  ".##########...",
+  ".##########...",
+  "..##########..",
   "..##########..",
   "..##########..",
   "...########...",
-  "...##....##...",
+  "....######....",
 ];
 
 /* green, yellow, orange, red, purple, blue, over the height of the apple */
@@ -111,8 +114,8 @@ const FEATURES = [
     body: "The weather, your calendar, how full the disk is, what the trains are doing. A widget is a small thing that shows you something, and you decide which ones you keep.",
   },
   {
-    title: "On the desktop, out of the way",
-    body: "Widgets sit on your wallpaper, behind whatever you are working in. They are there when you clear your screen and gone the moment you open something over them.",
+    title: "Behind your windows, or in front",
+    body: "By default widgets sit on the wallpaper, waiting for you to clear your screen. If you would rather one stayed in front of everything, there is a switch for that. You pick which screens each widget appears on, so the one you want in the corner of the big monitor stays there.",
   },
   {
     title: "Yours to arrange",
