@@ -10,10 +10,8 @@ const HUB = "https://github.com/nich227/GailanHub";
 // nowhere. With the path in front, the browser goes home and then to the section,
 // and on the home page it still just scrolls.
 const LINKS = [
-  { href: "/#what", label: "What it is" },
-  { href: "/#write", label: "Writing widgets" },
-  { href: "/#glass", label: "Glass" },
-  { href: "/#specs", label: "Specs" },
+  { href: "/#features", label: "Features" },
+  { href: "/#develop", label: "Developing" },
   { href: "/hub", label: "Widgets" },
 ];
 

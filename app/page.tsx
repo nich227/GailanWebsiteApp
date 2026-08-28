@@ -1,12 +1,13 @@
 import Image from "next/image";
 
 import Nav from "@/components/Nav";
+import Reveal from "@/components/Reveal";
 
 const REPO = "https://github.com/nich227/Gailan";
 const HUB = "https://github.com/nich227/GailanHub";
 
-/* Apple's own outline, drawn rather than pulled from an icon font so it inherits
-   the button's color and needs nothing loaded. */
+/* Both marks are drawn rather than pulled from an icon font, so they inherit the
+   button's color and need nothing loaded. */
 function AppleMark() {
   return (
     <svg
@@ -22,43 +23,48 @@ function AppleMark() {
   );
 }
 
+function GitHubMark() {
+  return (
+    <svg
+      className="pill-mark"
+      viewBox="0 0 16 16"
+      width="14"
+      height="14"
+      aria-hidden="true"
+      fill="currentColor"
+    >
+      <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.42 7.42 0 0 1 2-.27c.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A7.995 7.995 0 0 0 16 8c0-4.42-3.58-8-8-8Z" />
+    </svg>
+  );
+}
+
 const FEATURES = [
   {
-    title: "Widgets are TypeScript",
-    body: "A widget is a module exporting a command, a refresh interval and a render. Types are stripped when it bundles, so annotate as much or as little as suits you.",
+    title: "Anything you want to see",
+    body: "The weather, your calendar, how full the disk is, what the trains are doing. A widget is a small thing that shows you something, and you decide which ones you keep.",
   },
   {
-    title: "esbuild, not Babel",
-    body: "Save a file and it rebuilds in single-digit milliseconds, then pushes over a socket. No dev server to start, no watcher to configure.",
+    title: "On the desktop, out of the way",
+    body: "Widgets sit on your wallpaper, behind whatever you are working in. They are there when you clear your screen and gone the moment you open something over them.",
   },
   {
-    title: "Glass drawn by macOS",
-    body: "A widget marks a rectangle and the system frosts your wallpaper behind it. Real Liquid Glass on macOS 26, a vibrancy material before that.",
+    title: "Yours to arrange",
+    body: "Move them where you like, choose which screens they appear on, and change what each one shows in its own settings. Turn one off without deleting it.",
   },
   {
-    title: "Shortcuts and AppleScript",
-    body: "Refresh a widget, reload one, hide it, choose its screens. From the Shortcuts app with a widget picker, from a script, or from Siri.",
+    title: "It looks like part of the Mac",
+    body: "Widgets can ask the system to frost the wallpaper behind them, and they follow light and dark as you switch, so they belong on the desktop rather than sitting on top of it.",
   },
   {
-    title: "Locked to your machine",
-    body: "The server binds to localhost, checks the origin, and takes a per-launch token handed over on stdin. Nothing else on your network can reach it.",
+    title: "Ask it from anywhere",
+    body: "Refresh a widget from the Shortcuts app, from Siri, or from a script, without going near the app itself.",
   },
   {
-    title: "Übersicht widgets still run",
-    body: "The classic object-literal API is intact, and importing uebersicht still resolves. Rename the file to .js and it works.",
+    title: "It stays on your machine",
+    body: "Nothing signs in, nothing is uploaded, and nothing else on your network can reach it. What your widgets read stays where it was read.",
   },
 ];
 
-const SPECS: [string, string][] = [
-  ["Requires", "macOS 13.5 or later, Apple silicon or Intel"],
-  ["Widget languages", ".tsx  .jsx  .ts  .js"],
-  ["Bundler", "esbuild 0.25, shipped inside the app"],
-  ["Runtime", "Node 24 LTS, bundled; nothing to install"],
-  ["Styling", "Emotion 11, css and styled"],
-  ["Automation", "App Intents and AppleScript"],
-  ["Updates", "Sparkle, signed with EdDSA"],
-  ["License", "GPL-3.0-or-later"],
-];
 
 function Code() {
   return (
@@ -82,15 +88,9 @@ function Code() {
           {"  font-variant-numeric: tabular-nums;\n"}
           {"`"}
           {"\n\n"}
-          <span className="c">{"// the desktop is frosted behind this one"}</span>
-          {"\n"}
           <span className="k">export const</span> render = ({"{ output }"}) =&gt; (
           {"\n"}
-          {"  <Time data-gailan-desktop-glass={12}>"}
-          {"\n"}
-          {"    {output.trim()}"}
-          {"\n"}
-          {"  </Time>"}
+          {"  <Time>{output.trim()}</Time>"}
           {"\n)"}
         </code>
       </pre>
@@ -117,18 +117,19 @@ export default function Home() {
   return (
     <>
       <Nav />
+      <Reveal />
 
       <main className="page" id="top">
-        <header className="hero">
+        <header className="hero reveal">
           <h1>
             Your desktop,
             <br />
-            under version control.
+            the way you want it.
           </h1>
 
           <p className="hero-sub">
-            Gailan runs widgets on your macOS desktop. Each one is a TypeScript
-            file in a folder. Save it and it appears.
+            Gailan hosts widgets on your Mac&apos;s desktop. Infinitely
+            customizable and open source.
           </p>
 
           <div className="hero-actions">
@@ -137,28 +138,28 @@ export default function Home() {
               Download for Mac
             </a>
             <a className="pill pill-ghost" href={REPO}>
-              Source
+              <GitHubMark />
+              GitHub
             </a>
           </div>
 
           <div className="hero-meta">
             <span className="label">macOS 13.5+</span>
-            <span className="label">GPL-3.0</span>
-            <span className="label">No account</span>
           </div>
 
           <Shot />
         </header>
 
-        <section id="what">
+        <section id="features" className="reveal">
           <div className="section-head">
             <span className="section-number dots">01</span>
             <div>
-              <h2>A folder of files, on your wallpaper</h2>
+              <h2>Features</h2>
               <p className="section-lede">
-                There is no widget store and no editor to learn. Gailan watches a
-                directory, compiles what it finds, and draws it behind your
-                windows. Delete the file and the widget is gone.
+                Gailan puts small, useful things on your wallpaper: the time, the
+                weather, what your machine is doing, whatever you care to watch.
+                They stay behind your windows until you want them, and you decide
+                what appears and where.
               </p>
             </div>
           </div>
@@ -176,14 +177,15 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="write">
+        <section id="develop" className="reveal">
           <div className="section-head">
             <span className="section-number dots">02</span>
             <div>
-              <h2>Three exports and you are done</h2>
+              <h2>Developing</h2>
               <p className="section-lede">
-                A command to run, how often to run it, and what to draw with the
-                output. Everything else is optional.
+                If you want to make one, a widget is a single file in a folder. You
+                write down what to run, how often, and what to show. Save the file
+                and it is on your desktop.
               </p>
             </div>
           </div>
@@ -191,116 +193,51 @@ export default function Home() {
           <div className="split">
             <Code />
             <div>
-              <h3 style={{ marginBottom: 12 }}>What you get for free</h3>
+              <h3 style={{ marginBottom: 12 }}>Three things to fill in</h3>
               <p style={{ marginBottom: 18 }}>
-                Emotion&apos;s <code>css</code> and <code>styled</code> are
-                exported from the <code>gailan</code> module, and generated class
-                names carry the component they came from, so the inspector reads{" "}
-                <code>css-1a2b3c-Time</code> rather than a hash on its own.
+                A <strong>command</strong> is anything you could type into
+                Terminal. Gailan runs it for you and hands you whatever it printed.
+                The example asks the Mac for the time.
               </p>
               <p style={{ marginBottom: 18 }}>
-                Widgets see the system appearance through{" "}
-                <code>prefers-color-scheme</code> and an attribute on the
-                document, so light and dark are a media query rather than a
-                setting to read.
+                <strong>How often</strong> is a number in milliseconds. A clock
+                wants every second; the weather is happy every ten minutes.
+              </p>
+              <p style={{ marginBottom: 18 }}>
+                <strong>What to show</strong> is the shape of it, written the way a
+                web page is written. If you have ever changed a page&apos;s colours
+                or spacing, this is the same work.
               </p>
               <p>
-                When a widget fails, the error appears where the widget was, with
-                the line from your source and the column marked. The stack is
-                mapped back through the bundle, so it points at the file you
-                wrote.
+                There is nothing to set up first and nothing to compile. Gailan
+                watches the folder, and when you save, the widget on your desktop
+                changes. If you get something wrong, it says what and points at the
+                line.
               </p>
             </div>
           </div>
         </section>
 
-        <section id="glass">
+        <section id="widgets" className="reveal">
           <div className="section-head">
             <span className="section-number dots">03</span>
             <div>
-              <h2>Glass the system draws</h2>
+              <h2>Widget Hub</h2>
               <p className="section-lede">
-                A page cannot see what is behind its own window, which is why
-                CSS has never been able to frost a wallpaper. So the widget marks
-                a rectangle and the app asks macOS to put its material there.
+                A gallery of widgets other people have made. Each one shows you
+                what it looks like and says what it does, and downloading it gives
+                you a folder to drop in. Nothing to sign up for, and you can read
+                every one before you run it.
               </p>
             </div>
           </div>
 
-          <div className="split">
-            <div>
-              <h3 style={{ marginBottom: 12 }}>One attribute</h3>
-              <p style={{ marginBottom: 18 }}>
-                Add <code>data-gailan-desktop-glass</code> to an element with the
-                radius you want. Give it an <code>id</code> and the same pane of
-                glass follows it as the widget re-renders.
-              </p>
-              <p>
-                On macOS 26 this is Liquid Glass, with a style and a tint in
-                Preferences. Before that it is the closest vibrancy material.
-                Keep your own background thin or it covers the glass it asked
-                for.
-              </p>
-            </div>
-            <div className="spec">
-              <div className="spec-row">
-                <div className="spec-key label label-ink">Frost</div>
-                <div className="spec-value">On by default</div>
-              </div>
-              <div className="spec-row">
-                <div className="spec-key label label-ink">Style</div>
-                <div className="spec-value">Regular / Clear</div>
-              </div>
-              <div className="spec-row">
-                <div className="spec-key label label-ink">Tint</div>
-                <div className="spec-value">Any color, or none</div>
-              </div>
-              <div className="spec-row">
-                <div className="spec-key label label-ink">Drawn by</div>
-                <div className="spec-value">NSGlassEffectView</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section id="specs">
-          <div className="section-head">
-            <span className="section-number dots">04</span>
-            <div>
-              <h2>Specifications</h2>
-            </div>
-          </div>
-
-          <div className="spec">
-            {SPECS.map(([key, value]) => (
-              <div className="spec-row" key={key}>
-                <div className="spec-key label label-ink">{key}</div>
-                <div className="spec-value">{value}</div>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section id="widgets">
-          <div className="section-head">
-            <span className="section-number dots">05</span>
-            <div>
-              <h2>Widgets, by pull request</h2>
-              <p className="section-lede">
-                GailanHub is one repository of widgets. Every one is a folder with
-                a manifest, a readme saying what it runs, and a screenshot. Adding
-                yours means opening a pull request; CI compiles it before anyone
-                looks.
-              </p>
-            </div>
-          </div>
-
-          <div className="hero-actions" style={{ justifyContent: "flex-start" }}>
+          <div className="section-actions">
             <a className="pill" href="/hub">
               Browse widgets
             </a>
             <a className="pill pill-ghost" href={`${HUB}/blob/main/CONTRIBUTING.md`}>
-              Contribute one
+              Share yours
             </a>
           </div>
         </section>

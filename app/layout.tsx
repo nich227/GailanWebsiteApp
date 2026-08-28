@@ -45,6 +45,16 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${sans.variable} ${mono.variable} ${dots.variable}`}>
+      <head>
+        {/* Set before the first paint, so the stylesheet can hide what is about to
+            fade in. Without javascript this never runs, nothing is hidden, and the
+            page reads as it always did. */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "document.documentElement.dataset.reveal = 'on'",
+          }}
+        />
+      </head>
       <body>
         <div className="grid-lines" aria-hidden="true" />
         {children}
