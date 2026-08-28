@@ -9,88 +9,15 @@ const HUB = "https://github.com/nich227/GailanHub";
 
 /* Both marks are drawn rather than pulled from an icon font, so they inherit the
    button's color and need nothing loaded. */
-/* The mark itself, rasterised to a grid and drawn a square at a time, because the
-   smooth outline turns to mush at the size a button wants it. Rasterised rather than
-   drawn by hand so the bite, the notch between the lobes and the detached leaf are
-   the real ones. Hover and it goes rainbow, in the order the six stripes ran: green
-   at the leaf, blue at the bottom. */
-const APPLE = [
-  ".........##...",
-  ".........##...",
-  "..............",
-  "...####..####.",
-  "..############",
-  ".#############",
-  ".############.",
-  ".############.",
-  ".##########...",
-  ".##########...",
-  ".##########...",
-  "..##########..",
-  "..##########..",
-  "..##########..",
-  "...########...",
-  "....######....",
-];
-
-/* green, yellow, orange, red, purple, blue, over the height of the apple */
-const STRIPES = [
-  "#61bb46",
-  "#fdb827",
-  "#f5821f",
-  "#e03a3e",
-  "#963d97",
-  "#009ddc",
-];
-
-function stripeFor(row: number) {
-  const band = Math.floor((row / APPLE.length) * STRIPES.length);
-  return STRIPES[Math.min(band, STRIPES.length - 1)];
-}
-
-function applePixels(colored: boolean) {
-  const pixels: React.ReactElement[] = [];
-
-  APPLE.forEach((row, y) => {
-    // runs of pixels become one rect, so there are a dozen rather than a hundred
-    let x = 0;
-    while (x < row.length) {
-      if (row[x] !== "#") {
-        x += 1;
-        continue;
-      }
-      let width = 0;
-      while (row[x + width] === "#") width += 1;
-      pixels.push(
-        <rect
-          key={`${y}-${x}`}
-          x={x}
-          y={y}
-          width={width}
-          height={1}
-          fill={colored ? stripeFor(y) : "currentColor"}
-        />
-      );
-      x += width;
-    }
-  });
-
-  return pixels;
-}
-
+/* Apple's own glyph, U+F8FF. It lives in the private use area, so it draws on Apple
+   systems and nowhere else, which is where anyone downloading a Mac app is. Hovering
+   runs the six stripes down it in the order they came, as a gradient clipped to the
+   glyph rather than a second copy of it. */
 function AppleMark() {
   return (
-    <svg
-      className="pill-mark pill-mark-apple"
-      viewBox={`0 0 ${APPLE[0].length} ${APPLE.length}`}
-      width="13"
-      height="14"
-      aria-hidden="true"
-      shapeRendering="crispEdges"
-    >
-      <g className="apple-plain">{applePixels(false)}</g>
-      <g className="apple-rainbow">{applePixels(true)}</g>
-    </svg>
+    <span className="pill-mark pill-mark-apple" aria-hidden="true">
+      {"\uF8FF"}
+    </span>
   );
 }
 
