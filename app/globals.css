@@ -15,7 +15,7 @@
   --rule-strong: rgba(11, 11, 12, 0.24);
   --red: #d71921;
 
-  --grid: 88px;
+  --grid: 120px;
   --page: 1180px;
 
   --mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
@@ -43,18 +43,30 @@ body {
 }
 
 /* The grid, drawn rather than implied. Fixed so sections slide over it. */
+/* Graph paper: the same square both ways. It only ruled vertically before, so the
+   only horizontal lines on the page were the borders between sections, which land
+   wherever the content ends and read as a grid that cannot keep time. */
 .grid-lines {
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
-  background-image: repeating-linear-gradient(
-    to right,
-    var(--rule) 0 1px,
-    transparent 1px var(--grid)
-  );
-  mask-image: linear-gradient(to bottom, transparent, #000 12%, #000 88%, transparent);
-  opacity: 0.7;
+  background-image:
+    repeating-linear-gradient(
+      to right,
+      var(--rule) 0 1px,
+      transparent 1px var(--grid)
+    ),
+    repeating-linear-gradient(
+      to bottom,
+      var(--rule) 0 1px,
+      transparent 1px var(--grid)
+    );
+  /* squares start from the top left of the window so both rulings agree */
+  background-position: 0 0;
+  background-size: var(--grid) var(--grid);
+  mask-image: linear-gradient(to bottom, transparent, #000 10%, #000 90%, transparent);
+  opacity: 0.55;
 }
 
 .page {
@@ -547,7 +559,6 @@ html[data-reveal="on"] .reveal-in {
 
 section {
   padding: clamp(72px, 12vh, 128px) 0;
-  border-top: 1px solid var(--rule);
   margin-top: clamp(72px, 12vh, 128px);
 }
 
