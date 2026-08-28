@@ -2,6 +2,7 @@ import Image from "next/image";
 
 import Nav from "@/components/Nav";
 import Reveal from "@/components/Reveal";
+import Version from "@/components/Version";
 
 const REPO = "https://github.com/nich227/Gailan";
 const HUB = "https://github.com/nich227/GailanHub";
@@ -169,6 +170,61 @@ function Code() {
   );
 }
 
+const CLOCK_FILES: [string, string, string][] = [
+  ["index.tsx", "13 KB", "The widget itself: what to run, and what to draw with it"],
+  ["widget.json", "1 KB", "Its name, its version, and the settings it offers you"],
+  ["README.md", "1 KB", "What it does, for anyone who opens the folder"],
+  ["preview.jpg", "123 KB", "The picture the gallery shows"],
+  ["dotmatrix-OFL.txt", "4 KB", "The licence for the numerals it draws with"],
+  ["settings.json", "—", "Written by Gailan when you change something"],
+];
+
+/* Drawn rather than photographed: it stays sharp at any size, follows light and dark,
+   and a screen reader can read it out. The right column is the annotation. */
+function FinderWindow() {
+  return (
+    <figure className="finder" aria-label="The clock widget's folder, file by file">
+      <div className="finder-bar">
+        <span className="finder-light" />
+        <span className="finder-light" />
+        <span className="finder-light" />
+        <span className="finder-title">clock</span>
+      </div>
+
+      <div className="finder-head">
+        <span>Name</span>
+        <span>Size</span>
+        <span>What it is</span>
+      </div>
+
+      <ul className="finder-list">
+        {CLOCK_FILES.map(([name, size, note]) => (
+          <li className="finder-row" key={name}>
+            <span className="finder-name">
+              <svg
+                className="finder-doc"
+                viewBox="0 0 12 14"
+                aria-hidden="true"
+                fill="none"
+              >
+                <path
+                  d="M1 .5h6.5L11 4v9.5H1z"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
+                <path d="M7.5.5V4H11" stroke="currentColor" strokeWidth="1" />
+              </svg>
+              {name}
+            </span>
+            <span className="finder-size">{size}</span>
+            <span className="finder-note">{note}</span>
+          </li>
+        ))}
+      </ul>
+    </figure>
+  );
+}
+
 // The desktop itself, taken with the template in GailanHub, so what the page shows is
 // what the widgets in the hub actually look like on a Mac.
 function Shot() {
@@ -216,6 +272,7 @@ export default function Home() {
 
           <div className="hero-meta">
             <span className="label">macOS 13.5+</span>
+            <Version />
           </div>
 
           <Shot />
@@ -256,9 +313,10 @@ export default function Home() {
             <div>
               <h2>Developing</h2>
               <p className="section-lede">
-                If you want to make one, a widget is a single file in a folder. You
-                write down what to run, how often, and what to show. Save the file
-                and it is on your desktop.
+                A widget is a folder. One file in it does the work, and the rest are
+                there to describe it: what it is called, what it can be told to
+                change, what it looks like. You write down what to run, how often,
+                and what to show. Save the file and it is on your desktop.
               </p>
             </div>
           </div>
@@ -289,6 +347,16 @@ export default function Home() {
               </p>
             </div>
           </div>
+
+          <h3 className="finder-caption">
+            What is in a widget&apos;s folder
+          </h3>
+          <p className="finder-lede">
+            This is the clock from the hub. Only the first file is the widget; the
+            others say what it is called, what you are allowed to change, and what it
+            looks like. A widget of your own needs no more than that first file.
+          </p>
+          <FinderWindow />
         </section>
 
         <section id="widgets" className="reveal">
