@@ -149,7 +149,7 @@ function Shot() {
         src="/desktop.jpg"
         width={1920}
         height={1200}
-        alt="A Mac desktop with three Gailan widgets down the right: the time on a dot matrix, memory in use on a scale, and what is playing with its cover and progress."
+        alt="A Mac desktop with three Gailan widgets down the right, in their light style: the time on a dot matrix, memory in use on a scale, and what is playing with its cover and a progress bar."
       />
     </figure>
   );
